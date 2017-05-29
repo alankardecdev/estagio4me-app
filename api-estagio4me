@@ -1,0 +1,40 @@
++ /api/internship
+- get       /findAll
+- get       /findById/:id
+- post      /findByFilter
+- post      /findOneByFilter
+- post      /insert
+- post      /updateOne
+- delete    /delete/:id
+
++ /api/login
+- get       /reAuth
+- post      /changePassword
+- post      /checkEmailUsername
+- post      /login
+- post      /recoverPassword
+- post      /singUp
+
++ /api/profile
+- get       /findOne
+- post      /save
+
++ /api/rating
+- get       /findByAuthUser
+- post      /findOne
+- post      /save
+- delete    /delete/:userId/:internshipId
+
++ /api/skill
+- get       /findAll
+- get       /findById/:id
+- post      /insert
+- post      /insertMany
+- post      /updateOne
+- delete    /delete/:id
+
++ /api/user
+- get       /findAll
+- get       /findById/:id
+- post      /updateOne
+- delete    /delete/:id
