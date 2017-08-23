@@ -1,5 +1,7 @@
 package com.estagio4me.Model.apiEst4Me.abstractModel;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 /**
@@ -7,7 +9,10 @@ import java.util.Date;
  */
 
 public abstract class AbstractModel {
+
+    @SerializedName("_createdAt")
     private Date createdAt;
+    @SerializedName("_updatedAt")
     private Date updatedAt;
 
     public Date getCreatedAt() {

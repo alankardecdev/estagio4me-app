@@ -1,15 +1,37 @@
 package com.estagio4me.Model.apiEst4Me;
 
+import com.estagio4me.Model.apiEst4Me.abstractModel.AbstractModel;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
 /**
  * Created by alankardec on 29/05/17.
  */
 
-public class User {
+public class User extends AbstractModel implements Serializable {
+
+    @SerializedName("_firstName")
     private String firstName;
+    @SerializedName("_lastName")
     private String lastName;
+    @SerializedName("_email")
     private String email;
+    @SerializedName("_password")
     private String password;
+    @SerializedName("_username")
     private String username;
+
+    public User() {}
+
+    public User(String firstName, String lastName, String email, String password, String username) {
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+    }
 
     public String getFirstName() {
         return firstName;
