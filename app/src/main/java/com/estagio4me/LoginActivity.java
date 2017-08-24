@@ -12,15 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.estagio4me.Model.apiEst4Me.Login;
-import com.estagio4me.Model.apiEst4Me.User;
 import com.estagio4me.Model.apiEst4Me.UserParameter;
+import com.estagio4me.Model.apiEst4Me.singleton.RetrofitSingleton;
 import com.estagio4me.Service.LoginAPI;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
 
 /**
  * Created by alankardec on 23/08/17.
@@ -55,16 +55,11 @@ public class LoginActivity extends AppCompatActivity
         Button btnEntrar = (Button) findViewById(R.id.btnEntrar);
         btnEntrar.setOnClickListener(this);
 
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("http://172.16.13.98:3000")
-                .addConverterFactory(GsonConverterFactory.create());
-
-        retrofit = builder.build();
     }
 
     @Override
     public void onClick(View view) {
-
+        Retrofit retrofit = RetrofitSingleton.getIntance();
         String email = edtUsername.getText().toString();
         String senha = edtPassword.getText().toString();
         //UserParameter userParameter = new UserParameter(email, senha);
@@ -76,9 +71,10 @@ public class LoginActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
                 Login usuario = response.body();
-                Intent intent = new Intent(_this, MainActivity.class);
+                Intent intent = new Intent(_this, PrincipalActivity.class);
                 intent.putExtra("nome", usuario.getUser().getUsername());
                 intent.putExtra("email", usuario.getUser().getEmail());
+                intent.putExtra("message", usuario.getMessage());
                 startActivity(intent);
             }
 

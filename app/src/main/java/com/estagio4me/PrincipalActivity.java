@@ -14,6 +14,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
     TextView txtNome;
     TextView txtEmail;
+    TextView txtMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
         txtNome = (TextView) findViewById(R.id.txtPrincipalNome);
         txtEmail = (TextView) findViewById(R.id.txtPrincipalEmail);
+        txtMessage = (TextView) findViewById(R.id.txtPrincipalMessage);
 
         Intent it = getIntent();
 
@@ -30,6 +32,9 @@ public class PrincipalActivity extends AppCompatActivity {
 
         String email = it.getStringExtra("email");
         txtEmail.setText(email);
+
+        String message = it.getStringExtra("message");
+        txtMessage.setText(message);
 
 
 

@@ -11,16 +11,13 @@ import java.io.Serializable;
 
 public class User extends AbstractModel implements Serializable {
 
-    @SerializedName("_firstName")
-    private String firstName;
-    @SerializedName("_lastName")
-    private String lastName;
-    @SerializedName("_email")
-    private String email;
-    @SerializedName("_password")
-    private String password;
-    @SerializedName("_username")
-    private String username;
+    @SerializedName("_firstName") private String firstName;
+    @SerializedName("_lastName") private String lastName;
+    @SerializedName("_email") private String email;
+    @SerializedName("_password") private String password;
+    @SerializedName("_username") private String username;
+    @SerializedName("_isAdmin") private Boolean isAdmin = false;
+
 
     public User() {}
 
@@ -32,6 +29,10 @@ public class User extends AbstractModel implements Serializable {
         this.password = password;
         this.username = username;
     }
+
+    public Boolean getAdmin() { return isAdmin; }
+
+    public void setAdmin(Boolean admin) { isAdmin = admin; }
 
     public String getFirstName() {
         return firstName;
