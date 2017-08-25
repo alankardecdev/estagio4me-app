@@ -62,7 +62,6 @@ public class LoginActivity extends AppCompatActivity
         Retrofit retrofit = RetrofitSingleton.getIntance();
         String email = edtUsername.getText().toString();
         String senha = edtPassword.getText().toString();
-        //UserParameter userParameter = new UserParameter(email, senha);
         UserParameter user = new UserParameter(email, senha);
 
         LoginAPI loginCliente = retrofit.create(LoginAPI.class);
