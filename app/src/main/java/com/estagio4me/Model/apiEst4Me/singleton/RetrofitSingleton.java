@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitSingleton {
 
     private static Retrofit retrofit = null;
-    private static String URL = "http://172.16.13.98:3000";
+    private static String URL = "http://192.168.15.10:3000";
 
     public static Retrofit getIntance() {
         if(retrofit == null) {

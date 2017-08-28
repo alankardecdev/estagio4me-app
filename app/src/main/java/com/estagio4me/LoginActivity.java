@@ -70,11 +70,16 @@ public class LoginActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
                 Login usuario = response.body();
-                Intent intent = new Intent(_this, PrincipalActivity.class);
-                intent.putExtra("nome", usuario.getUser().getUsername());
-                intent.putExtra("email", usuario.getUser().getEmail());
-                intent.putExtra("message", usuario.getMessage());
-                startActivity(intent);
+                try {
+                    Intent intent = new Intent(_this, PrincipalActivity.class);
+                    intent.putExtra("nome", usuario.getUser().getUsername());
+                    intent.putExtra("email", usuario.getUser().getEmail());
+                    intent.putExtra("message", usuario.getMessage());
+                    startActivity(intent);
+                } catch (NullPointerException t) {
+                    t.printStackTrace();
+                    Toast.makeText(LoginActivity.this, "Usuário ou senha incorreto.", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
