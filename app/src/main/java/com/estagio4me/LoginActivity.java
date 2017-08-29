@@ -2,6 +2,7 @@ package com.estagio4me;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         edtUsername = (EditText) findViewById(R.id.edtUsername);
         edtPassword = (EditText) findViewById(R.id.edtPassword);
 
@@ -75,6 +77,10 @@ public class LoginActivity extends AppCompatActivity
                     intent.putExtra("nome", usuario.getUser().getUsername());
                     intent.putExtra("email", usuario.getUser().getEmail());
                     intent.putExtra("message", usuario.getMessage());
+                    SharedPreferences preferences = getSharedPreferences("config", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("token", "JWT " + usuario.getToken());
+                    editor.commit();
                     startActivity(intent);
                 } catch (NullPointerException t) {
                     t.printStackTrace();

@@ -1,42 +1,53 @@
 package com.estagio4me;
 
-import android.content.Intent;
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.ListView;
 
-/**
- * Created by alankardec on 23/08/17.
- */
+import com.estagio4me.Model.apiEst4Me.Internship;
+import com.estagio4me.Model.apiEst4Me.singleton.RetrofitSingleton;
+import com.estagio4me.Service.InternshipAPI;
+import com.estagio4me.ui.InternshipAdapter;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class PrincipalActivity extends AppCompatActivity {
 
-    TextView txtNome;
-    TextView txtEmail;
-    TextView txtMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        txtNome = (TextView) findViewById(R.id.txtPrincipalNome);
-        txtEmail = (TextView) findViewById(R.id.txtPrincipalEmail);
-        txtMessage = (TextView) findViewById(R.id.txtPrincipalMessage);
+        Retrofit retrofit = RetrofitSingleton.getIntance();
+        InternshipAPI internshipAPI = retrofit.create(InternshipAPI.class);
+        final Activity app = this;
+        SharedPreferences preferences = getSharedPreferences("config", MODE_PRIVATE);
+        Call<List<Internship>> call = internshipAPI.findAll(preferences.getString("token", null));
+        call.enqueue(new Callback<List<Internship>>() {
+            @Override
+            public void onResponse(Call<List<Internship>> call, Response<List<Internship>> response) {
+                List<Internship> internships = response.body();
+                InternshipAdapter adapter = new InternshipAdapter(internships, app);
+                ListView listInternship = (ListView) findViewById(R.id.lista);
+                listInternship.setAdapter(adapter);
+            }
 
-        Intent it = getIntent();
+            @Override
+            public void onFailure(Call<List<Internship>> call, Throwable t) {
 
-        String nome = it.getStringExtra("nome");
-        txtNome.setText(nome);
-
-        String email = it.getStringExtra("email");
-        txtEmail.setText(email);
-
-        String message = it.getStringExtra("message");
-        txtMessage.setText(message);
-
+            }
+        });
 
 
     }
+
 }

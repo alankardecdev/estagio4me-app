@@ -1,26 +1,28 @@
 package com.estagio4me.Model.apiEst4Me;
 
 import com.estagio4me.Model.apiEst4Me.abstractModel.AbstractModel;
+import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by alankardec on 29/05/17.
  */
 
-public class Internship extends AbstractModel{
+public class Internship extends AbstractModel implements Serializable{
 
-    private String companyName;
-    private String role;
-    private List<SkillModel> requiredSkills;
-    private List<SkillModel> preferredSkills;
-    private float compensation;
-    private boolean isCompanyPrivate;
-    private boolean isCompensationPrivate;
-    private boolean isActive;
-    private String contact;
-    private String area;
-    private String description;
+    @SerializedName("_companyName") private String companyName;
+    @SerializedName("_role") private String role;
+    @SerializedName("_requiredSkills") private List<SkillModel> requiredSkills;
+    @SerializedName("_prederredSkills") private List<SkillModel> preferredSkills;
+    @SerializedName("_compensation") private float compensation;
+    @SerializedName("_isCompanyPrivate") private boolean isCompanyPrivate;
+    @SerializedName("_isCompensationPrivate") private boolean isCompensationPrivate;
+    @SerializedName("_isActive") private boolean isActive;
+    @SerializedName("_contact") private String contact;
+    @SerializedName("_area") private String area;
+    @SerializedName("_description") private String description;
 
     public String getCompanyName() {
         return companyName;
