@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity
                 Login usuario = response.body();
                 try {
                     Intent intent = new Intent(_this, PrincipalActivity.class);
-                    intent.putExtra("nome", usuario.getUser().getUsername());
+                    intent.putExtra("name", usuario.getUser().getUsername());
                     intent.putExtra("email", usuario.getUser().getEmail());
                     intent.putExtra("message", usuario.getMessage());
                     SharedPreferences preferences = getSharedPreferences("config", MODE_PRIVATE);

@@ -13,7 +13,8 @@
 
 
     <string name="title_login">Login</string>
-    <string name="username">Digite seu username</string>
-    <string name="password">Digite sua senha</string>
-    <string name="login">Entrar</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Log-In</string>
+    <string name="title_jobs">Jobs</string>
 </resources>
